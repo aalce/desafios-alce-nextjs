@@ -11,6 +11,7 @@ Não deixe de enviar o seu teste mesmo que incompleto!
 * HTML
 * CSS
 * Javascript
+* Typescript
 * Nodejs
 * React
 
