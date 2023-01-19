@@ -22,7 +22,7 @@ Para iniciar o teste, faça um fork deste repositório, crie uma branch com o se
 - Criação de componentes
 - Lógica
 - Utilização de API
-- Não esperamos um layout lindo, não é vaga para designer, mas alguma preocupação o visual será considerada.
+- Não esperamos um layout lindo, não é vaga para designer, mas alguma preocupação com o visual será considerada.
 
 # Instruções para o desafio:
 Você vai criar 2 páginas, a primeira (index/home) será um grid de objetos/imagens e a segunda detalhes sobre os objetos desse grid.
