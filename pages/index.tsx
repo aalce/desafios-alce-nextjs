@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/constants"
 import Link from "next/link"
 
 function Home({ countries }: any) {
@@ -13,8 +14,14 @@ function Home({ countries }: any) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("https://restcountries.com/v3.1/all")
+  const res = await fetch(`${BASE_URL}all`)
   const countries = await res.json()
+
+  if (!countries) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {

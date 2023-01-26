@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/constants"
 import React from "react"
 
 function Country({ country }: any) {
@@ -11,8 +12,14 @@ function Country({ country }: any) {
 
 export async function getServerSideProps({ query }: any) {
   const { code } = query
-  const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
+  const res = await fetch(`${BASE_URL}alpha/${code}`)
   const country = await res.json()
+
+  if (!country) {
+    return {
+      notFound: true,
+    }
+  }
 
   return { props: { country } }
 }
