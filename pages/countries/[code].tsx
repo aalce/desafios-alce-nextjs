@@ -1,13 +1,9 @@
+import DetailPage from "@/components/detailPage/DetailPage"
 import { BASE_URL } from "@/constants"
 import React from "react"
 
 function Country({ country }: any) {
-  return (
-    <div>
-      <p>{country[0].name.common}</p>
-      <p>{country[0].name.official}</p>
-    </div>
-  )
+  return <DetailPage country={country} />
 }
 
 export async function getServerSideProps({ query }: any) {

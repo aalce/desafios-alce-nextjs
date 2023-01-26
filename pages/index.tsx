@@ -1,16 +1,9 @@
+import Homepage from "@/components/homePage/Homepage"
 import { BASE_URL } from "@/constants"
 import Link from "next/link"
 
 function Home({ countries }: any) {
-  return (
-    <ul>
-      {countries.map((country: any) => (
-        <li key={country.id}>
-          <Link href={`/countries/${country.cca3}`}>{country.name.common}</Link>
-        </li>
-      ))}
-    </ul>
-  )
+  return <Homepage countries={countries} />
 }
 
 export async function getStaticProps() {
