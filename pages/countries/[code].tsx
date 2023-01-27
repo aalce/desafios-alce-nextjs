@@ -1,8 +1,13 @@
 import DetailPage from "@/components/detailPage/DetailPage"
 import { BASE_URL } from "@/constants"
+import { CountryDetails } from "@/types"
 import React from "react"
 
-function Country({ country }: any) {
+interface Props {
+  country: CountryDetails[]
+}
+
+function Country({ country }: Props) {
   return <DetailPage country={country} />
 }
 

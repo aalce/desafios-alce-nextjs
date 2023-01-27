@@ -1,8 +1,9 @@
 import Homepage from "@/components/homePage/Homepage"
 import { BASE_URL } from "@/constants"
+import { Countries } from "@/types"
 import Link from "next/link"
 
-function Home({ countries }: any) {
+function Home({ countries }: Countries) {
   return <Homepage countries={countries} />
 }
 
