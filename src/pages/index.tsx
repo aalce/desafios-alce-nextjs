@@ -1,22 +1,43 @@
-import { Pokemon } from "../types/pokemon";
+import { Pokemon } from "../types";
+import { styled } from ".../styles";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import axios from "axios";
 
-export default function Home(pokemons) {
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await axios
+    .get("https://pokeapi.co/api/v2/pokemon?limit=1008")
+    .catch((error) => {
+      console.log(error);
+    });
+
+  const { results } = res?.data;
+  const pokemonsList: Pokemon[] = [];
+  results.forEach((pokemon: Pokemon, index: number) => {
+    pokemonsList.push({
+      ...pokemon,
+      id: index + 1,
+      name: pokemon.name,
+      sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+        index + 1
+      }.png`,
+    });
+  });
+
+  return {
+    props: {
+      pokemonsList,
+    },
+  };
+};
+
+export default function Home({
+  pokemonsList,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <ul>
-      {pokemons.pokemons.results.map((pokemon: Pokemon) => (
+      {pokemonsList.map((pokemon: Pokemon) => (
         <li key={pokemon.name}>{pokemon.name}</li>
       ))}
     </ul>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon");
-  const pokemons = await res.json();
-
-  return {
-    props: {
-      pokemons,
-    },
-  };
 }
