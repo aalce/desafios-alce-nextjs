@@ -2,6 +2,15 @@ import { Pokemon } from "../types";
 import { styled } from ".../styles";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import axios from "axios";
+import {
+  HomeContainer,
+  OptionsContainer,
+  PokemonCard,
+  PokemonId,
+  PokemonListContainer,
+} from "../styles/pages/home";
+import Image from "next/image";
+import displayPokemonNumber, { capitalize } from "../utils";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await axios
@@ -11,6 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     });
 
   const { results } = res?.data;
+
   const pokemonsList: Pokemon[] = [];
   results.forEach((pokemon: Pokemon, index: number) => {
     pokemonsList.push({
@@ -34,10 +44,17 @@ export default function Home({
   pokemonsList,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <ul>
-      {pokemonsList.map((pokemon: Pokemon) => (
-        <li key={pokemon.name}>{pokemon.name}</li>
-      ))}
-    </ul>
+    <HomeContainer>
+      <OptionsContainer>Teste</OptionsContainer>
+      <PokemonListContainer>
+        {pokemonsList.map((pokemon: Pokemon) => (
+          <PokemonCard key={pokemon.name}>
+            <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
+            <Image src={pokemon.sprite} width={96} height={96} alt={""} />
+            {capitalize(pokemon.name)}
+          </PokemonCard>
+        ))}
+      </PokemonListContainer>
+    </HomeContainer>
   );
 }
