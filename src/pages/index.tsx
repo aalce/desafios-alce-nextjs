@@ -1,5 +1,5 @@
-import { Pokemon } from "../types";
-import { InferGetStaticPropsType } from "next";
+import PokemonInfo from "../types";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import {
   FilterInput,
   HomeContainer,
@@ -11,15 +11,16 @@ import {
 import { capitalize, displayPokemonNumber } from "../utils";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1008");
 
   const { results } = await res.json();
 
-  const pokemonData: Pokemon[] = [];
+  const pokemonData: PokemonInfo[] = [];
 
-  results.forEach((pokemon: Pokemon, index: number) => {
+  results.forEach((pokemon: PokemonInfo, index: number) => {
     pokemonData.push({
       ...pokemon,
       id: index + 1,
@@ -35,11 +36,11 @@ export async function getStaticProps() {
       pokemonData,
     },
   };
-}
+};
 
-export default function Home({
+const Home: React.FC = ({
   pokemonData,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [filter, setFilter] = useState("");
 
   const handleSearchChange = (e) => {
@@ -56,17 +57,26 @@ export default function Home({
       </OptionsContainer>
       <PokemonListContainer>
         {pokemonData.map(
-          (pokemon: Pokemon) =>
+          (pokemon: PokemonInfo) =>
             (pokemon.name.includes(filter) ||
               pokemon.id.toString().includes(filter)) && (
-              <PokemonContainer key={pokemon.name}>
-                <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
-                <Image src={pokemon.sprite} width={96} height={96} alt={""} />
-                {capitalize(pokemon.name)}
-              </PokemonContainer>
+              <Link
+                key={pokemon.id}
+                href={`/pokemon/${pokemon.id}`}
+                prefetch={false}
+                style={{ textDecoration: "none" }}
+              >
+                <PokemonContainer>
+                  <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
+                  <Image src={pokemon.sprite} width={96} height={96} alt={""} />
+                  {capitalize(pokemon.name)}
+                </PokemonContainer>
+              </Link>
             )
         )}
       </PokemonListContainer>
     </HomeContainer>
   );
-}
+};
+
+export default Home;

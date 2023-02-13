@@ -35,6 +35,7 @@ export const FilterInput = styled("input", {
 
 export const PokemonListContainer = styled("div", {
   display: "flex",
+  flexDirection: "column",
   flexWrap: "wrap",
   margin: "0 2rem",
   "@bp3": {
@@ -42,7 +43,7 @@ export const PokemonListContainer = styled("div", {
   },
 });
 
-export const PokemonContainer = styled("a", {
+export const PokemonContainer = styled("div", {
   display: "flex",
   gap: "2rem",
   alignItems: "center",
@@ -52,6 +53,7 @@ export const PokemonContainer = styled("a", {
     backgroundColor: "#cdcdcd",
   },
   paddingLeft: "2rem",
+  color: "$gray800",
 });
 
 export const PokemonId = styled("div", {
