@@ -6,7 +6,6 @@ import Image from "next/image";
 import {
   capitalize,
   displayPokemonNumber,
-  convertToKg,
   addPointBeforeLastDigit,
 } from "@/src/utils";
 import goBackArrowIcon from "../../assets/go-back-arrow.svg";

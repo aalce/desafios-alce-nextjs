@@ -10,6 +10,7 @@ export const HomeContainer = styled("main", {
   maxWidth: 1100,
   gap: "2rem",
   margin: "0 auto",
+  paddingTop: "1em",
 });
 
 export const OptionsContainer = styled("div", {

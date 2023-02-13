@@ -14,9 +14,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1008");
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1008").catch(
+    (e) => console.log(e)
+  );
 
-  const { results } = await res.json();
+  const { results } = await res?.json();
 
   const pokemonData: PokemonInfo[] = [];
 
