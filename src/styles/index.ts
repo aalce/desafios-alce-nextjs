@@ -17,14 +17,11 @@ export const {
   theme: {
     colors: {
       white: "#fcfcfc",
+      primary: "#436a6b",
+      muted: "#757575",
 
       red500: "#a10300",
       red300: "#c32027",
-
-      gray900: "#121214",
-      gray800: "#202024",
-      gray300: "#c4c4cc",
-      gray100: "#e1e1e6",
     },
   },
 });

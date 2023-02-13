@@ -8,6 +8,7 @@ import {
   Header,
   HeaderContainer,
 } from "../styles/pages/app";
+import Link from "next/link";
 
 globalStyles();
 
@@ -16,12 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <Container>
       <Header>
         <HeaderContainer>
-          <Image
-            src={logoImg.src}
-            alt=""
-            width={logoImg.width}
-            height={logoImg.height}
-          />
+          <Link href="/">
+            <Image
+              src={logoImg.src}
+              alt=""
+              width={logoImg.width}
+              height={logoImg.height}
+            />
+          </Link>
         </HeaderContainer>
       </Header>
       <ContentContainer>

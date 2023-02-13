@@ -8,12 +8,12 @@ export const globalStyles = globalCss({
 
   body: {
     backgroundColor: "white",
-    color: "$gray800",
+    color: "$primary",
     "-webkit-font-smoothing": "antialiased",
   },
 
   "body, input, textarea, button": {
-    fontFamily: "Roboto",
+    fontFamily: "Open Sans",
     fontWeight: 400,
   },
 });

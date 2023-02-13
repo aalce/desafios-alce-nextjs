@@ -19,7 +19,7 @@ export const OptionsContainer = styled("div", {
 });
 
 export const FilterInput = styled("input", {
-  color: "rgba(0, 0, 0, 0.87)",
+  color: "$muted",
   border: "none",
   borderBottom: "1px solid rgba(0, 0, 0, 0.26)",
   outline: "none",
@@ -53,11 +53,14 @@ export const PokemonContainer = styled("div", {
     backgroundColor: "#cdcdcd",
   },
   paddingLeft: "2rem",
-  color: "$gray800",
+  color: "$muted",
 });
 
 export const PokemonId = styled("div", {
   backgroundColor: "#ebeceb",
+  color: "$muted",
   borderRadius: 15,
   padding: "3px 6px",
+  width: 50,
+  textAlign: "center",
 });

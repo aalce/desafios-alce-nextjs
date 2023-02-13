@@ -67,7 +67,7 @@ const Home: React.FC = ({
                 style={{ textDecoration: "none" }}
               >
                 <PokemonContainer>
-                  <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
+                  <PokemonId>#{displayPokemonNumber(pokemon.id)}</PokemonId>
                   <Image src={pokemon.sprite} width={96} height={96} alt={""} />
                   {capitalize(pokemon.name)}
                 </PokemonContainer>

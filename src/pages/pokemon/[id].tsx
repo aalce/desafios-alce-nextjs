@@ -3,8 +3,26 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { capitalize } from "@/src/utils";
+import {
+  capitalize,
+  displayPokemonNumber,
+  convertToKg,
+  addPointBeforeLastDigit,
+} from "@/src/utils";
 import goBackArrowIcon from "../../assets/go-back-arrow.svg";
+import { PokemonId } from "@/src/styles/pages/home";
+import {
+  ContentWrapper,
+  PokemonBaseStats,
+  PokemonBaseStatsTitle,
+  PokemonDetails,
+  PokemonDetailsContainer,
+  PokemonDetailsHeader,
+  PokemonInfo,
+  PokemonInfoContent,
+  PokemonInfoLabel,
+  PokemonTitle,
+} from "@/src/styles/pages/pokemon";
 
 const Pokemon: React.FC = (
   pokemonData: InferGetStaticPropsType<typeof getStaticProps>
@@ -16,6 +34,9 @@ const Pokemon: React.FC = (
     return <div>Loading..</div>;
   }
 
+  const typeNames = pokemon.types.map((type) => capitalize(type.type.name));
+  const typeNamesDisplay = `${typeNames.join(" / ")}`;
+
   return (
     <>
       <Head>
@@ -24,66 +45,62 @@ const Pokemon: React.FC = (
           {pokemon?.name ? capitalize(pokemon.name) : "Pokemon Details"}
         </title>
       </Head>
-      <div>
-        <div className="pokemon-details">
-          <div className="pokemon-details-header">
-            <div>
-              <Link href="/">
-                <Image
-                  src={goBackArrowIcon.src}
-                  alt=""
-                  width={25}
-                  height={25}
-                />
-              </Link>
-            </div>
-          </div>
+      <PokemonDetailsContainer>
+        <PokemonDetails>
+          <PokemonDetailsHeader>
+            <Link href="/">
+              <Image src={goBackArrowIcon.src} alt="" width={25} height={25} />
+            </Link>
 
-          <div>
-            <div className="layout-content-wrapper">
+            {pokemon.id >= 905 ? (
               <Image
                 src={pokemon.sprites.front_default}
-                width={96}
-                height={96}
+                width={250}
+                height={250}
                 alt={pokemon.name}
               />
-              <div className="pokemon-info">
-                <div className="pokemon-name">{capitalize(pokemon.name)}</div>
-                <div className="pokemon-height">
-                  <strong>Height:</strong> {pokemon.height}
-                </div>
-                <div className="pokemon-weight">
-                  <strong>Weight:</strong> {pokemon.weight}
-                </div>
-                <div className="pokemon-types">
-                  <strong>Types:</strong>
-                  {pokemon.types.map((pokemonType: PokemonType) => (
-                    <div key={pokemonType.slot}>{pokemonType.type.name}</div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Base Stats
-                  <ul>
-                    {pokemon.stats.map((pokemonStat: PokemonStat) => {
-                      const value = pokemonStat.base_stat;
-                      const name = pokemonStat.stat.name;
+            ) : (
+              <Image
+                src={`https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${displayPokemonNumber(
+                  pokemon.id
+                )}.png`}
+                width={250}
+                height={250}
+                alt={pokemon.name}
+              />
+            )}
+          </PokemonDetailsHeader>
 
-                      return (
-                        <li key={name}>
-                          <strong>{name}:</strong>
-                          <span>{value}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <ContentWrapper>
+            <PokemonInfo>
+              <PokemonDetailsHeader>
+                <PokemonTitle className="pokemon-name">
+                  {capitalize(pokemon.name)}
+                </PokemonTitle>
+                <PokemonId>#{displayPokemonNumber(pokemon.id)}</PokemonId>
+              </PokemonDetailsHeader>
+
+              <PokemonInfoContent>
+                <li>
+                  {typeNamesDisplay}
+                  <br />
+                  <span>Type</span>
+                </li>
+                <li>
+                  {addPointBeforeLastDigit(pokemon.weight)}kg
+                  <br />
+                  <span>Weight</span>
+                </li>
+                <li>
+                  {addPointBeforeLastDigit(pokemon.height)}m
+                  <br />
+                  <span>Height</span>
+                </li>
+              </PokemonInfoContent>
+            </PokemonInfo>
+          </ContentWrapper>
+        </PokemonDetails>
+      </PokemonDetailsContainer>
     </>
   );
 };
