@@ -13,5 +13,10 @@ export function capitalize(string: string) {
 export function addPointBeforeLastDigit(num: number) {
   var numStr = num.toString();
   var length = numStr.length;
-  return numStr.substring(0, length - 1) + "." + numStr[length - 1];
+
+  if (length > 1) {
+    return numStr.substring(0, length - 1) + "." + numStr[length - 1];
+  } else {
+    return "0." + numStr[length - 1];
+  }
 }
