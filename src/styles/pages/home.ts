@@ -13,18 +13,36 @@ export const HomeContainer = styled("main", {
 });
 
 export const OptionsContainer = styled("div", {
+  paddingTop: 15,
   borderRadius: 5,
-  backgroundColor: "green",
+  minWidth: 240,
+});
+
+export const FilterInput = styled("input", {
+  color: "rgba(0, 0, 0, 0.87)",
+  border: "none",
+  borderBottom: "1px solid rgba(0, 0, 0, 0.26)",
+  outline: "none",
+  width: "100%",
+  padding: 0,
+  borderRadius: 0,
+  fontSize: 16,
+  "&:focus": {
+    borderColor: "#2196F3",
+    borderWidth: 2,
+  },
 });
 
 export const PokemonListContainer = styled("div", {
   display: "flex",
   flexWrap: "wrap",
-  backgroundColor: "red",
   margin: "0 2rem",
+  "@bp3": {
+    width: 764,
+  },
 });
 
-export const PokemonCard = styled("a", {
+export const PokemonContainer = styled("a", {
   display: "flex",
   gap: "2rem",
   alignItems: "center",

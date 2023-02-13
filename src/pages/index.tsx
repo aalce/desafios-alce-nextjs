@@ -1,29 +1,26 @@
 import { Pokemon } from "../types";
-import { styled } from ".../styles";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import axios from "axios";
+import { InferGetStaticPropsType } from "next";
 import {
+  FilterInput,
   HomeContainer,
   OptionsContainer,
-  PokemonCard,
+  PokemonContainer,
   PokemonId,
   PokemonListContainer,
 } from "../styles/pages/home";
+import { capitalize, displayPokemonNumber } from "../utils";
 import Image from "next/image";
-import displayPokemonNumber, { capitalize } from "../utils";
+import { useState } from "react";
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios
-    .get("https://pokeapi.co/api/v2/pokemon?limit=1008")
-    .catch((error) => {
-      console.log(error);
-    });
+export async function getStaticProps() {
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1008");
 
-  const { results } = res?.data;
+  const { results } = await res.json();
 
-  const pokemonsList: Pokemon[] = [];
+  const pokemonData: Pokemon[] = [];
+
   results.forEach((pokemon: Pokemon, index: number) => {
-    pokemonsList.push({
+    pokemonData.push({
       ...pokemon,
       id: index + 1,
       name: pokemon.name,
@@ -35,25 +32,40 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      pokemonsList,
+      pokemonData,
     },
   };
-};
+}
 
 export default function Home({
-  pokemonsList,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  pokemonData,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [filter, setFilter] = useState("");
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
     <HomeContainer>
-      <OptionsContainer>Teste</OptionsContainer>
+      <OptionsContainer>
+        <FilterInput
+          placeholder="Search by name or number"
+          onChange={handleSearchChange}
+        />
+      </OptionsContainer>
       <PokemonListContainer>
-        {pokemonsList.map((pokemon: Pokemon) => (
-          <PokemonCard key={pokemon.name}>
-            <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
-            <Image src={pokemon.sprite} width={96} height={96} alt={""} />
-            {capitalize(pokemon.name)}
-          </PokemonCard>
-        ))}
+        {pokemonData.map(
+          (pokemon: Pokemon) =>
+            (pokemon.name.includes(filter) ||
+              pokemon.id.toString().includes(filter)) && (
+              <PokemonContainer key={pokemon.name}>
+                <PokemonId>{displayPokemonNumber(pokemon.id)}</PokemonId>
+                <Image src={pokemon.sprite} width={96} height={96} alt={""} />
+                {capitalize(pokemon.name)}
+              </PokemonContainer>
+            )
+        )}
       </PokemonListContainer>
     </HomeContainer>
   );
