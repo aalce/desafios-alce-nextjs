@@ -11,7 +11,7 @@
   padding: 2rem;
   border-radius: 20px;
   height: max-content;
-  width: 300px;
+  width: max-content;
   position: relative;
 }
 
@@ -51,6 +51,10 @@
   display: flex;
   gap: 15px;
   align-items: center;
+
+  border-top: 1px #d8d8d8 solid;
+  padding-top: 1rem;
+  width: 100%;
 }
 
 .pokemon_specifications span {
@@ -64,4 +68,10 @@
 
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .pokemon_wrapper {
+    max-width: 300px;
+  }
 }

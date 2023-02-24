@@ -1,10 +1,10 @@
-import axios from 'axios';
 import Image from 'next/image'
 import Link from 'next/link';
 import styles from './pokemon.module.css'
 import { ParsedUrlQuery } from 'querystring'
 import arrow from '../../public/assets/arrow-left.svg'
 import api from '@/services/api';
+import Head from 'next/head'
 
 type Pokemon = {
     id: number
@@ -12,6 +12,13 @@ type Pokemon = {
     types: [
         {
             type: {
+                name: string
+            }
+        }
+    ],
+    abilities: [
+        {
+            ability: {
                 name: string
             }
         }
@@ -28,6 +35,10 @@ export default function Pokemon({ pokemon }: PokemonProps) {
 
     return (
         <div className={styles.pokemon_wrapper}>
+            <Head>
+                <title>{pokemon.name}</title>
+            </Head>
+
             <Link href='/' className={styles.arrow_left_icon}>
                 <Image
                     src={arrow}
@@ -45,15 +56,20 @@ export default function Pokemon({ pokemon }: PokemonProps) {
             />
             <h2>{pokemon?.name}</h2>
             <div className={styles.pokemon_about_table}>
-                <p>Habilidades</p>
+                <p>Tipo</p>
                 <div className={styles.pokemon_abilities}>
                     {pokemon?.types.map(({ type }) => (
                         <span key={type?.name}>{type?.name}</span>
                     ))}
                 </div>
                 <div className={styles.pokemon_specifications}>
-                    Height <span>{pokemon?.height} m</span>
-                    Weight  <span>{pokemon?.weight} kg</span>
+                    Altura <span>{pokemon?.height} m</span>
+                    Peso  <span>{pokemon?.weight} kg</span>
+                </div>
+                <div className={styles.pokemon_specifications}>
+                    Habilidades: {pokemon?.abilities.map(({ ability }) => (
+                        <span key={ability?.name}>{ability?.name}</span>
+                    ))}
                 </div>
             </div>
         </div>

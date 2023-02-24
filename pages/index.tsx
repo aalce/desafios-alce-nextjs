@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import Image from 'next/image';
 
 import styles from '@/styles/Home.module.css'
 import { Card } from '@/components/Card';
 import search from '../public/assets/search.svg'
 import sort from '../public/assets/sort.svg'
+import pokemon from '../public/assets/pokemon.svg'
 import api from '@/services/api';
-
-const inter = Inter({ subsets: ['latin'] })
 
 type Pokemons = {
   uuid: number;
@@ -46,16 +44,20 @@ export default function Home({ pokemons }: PokemonsProps) {
       </Head>
 
       <nav className={styles.navbar}>
-
-        <h1 className={styles.pokedex_title}>Pokedex</h1>
+        <h1 className={styles.pokedex_title}>
+          <Image
+            src={pokemon}
+            width={40}
+            alt='Pokemon logo'
+          />
+          Pokedex
+        </h1>
         <div className={styles.interaction_bar}>
           <button onClick={() => setSorting(sorting === 'asc' ? 'desc' : 'asc')} className={styles.sorting_wrapper}>
             <Image
               src={sort}
               width={20}
-              alt='Voltar'
-              title='Voltar'
-              style={{ color: '#fff' }}
+              alt='Ordernar'
             />
             {sorting === 'asc' ? 'Ordenar de Z a A' : 'Ordenar de A a Z'}
           </button>
@@ -64,9 +66,7 @@ export default function Home({ pokemons }: PokemonsProps) {
             <Image
               src={search}
               width={20}
-              alt='Voltar'
-              title='Voltar'
-              style={{ color: '#fff' }}
+              alt='Buscar'
             />
             <input
               type="text"
@@ -88,6 +88,7 @@ export default function Home({ pokemons }: PokemonsProps) {
     </div>
   )
 }
+
 export async function getStaticProps() {
   const response = await api.get('/pokemon');
 

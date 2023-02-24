@@ -18,6 +18,9 @@
   text-align: center;
   color: #000;
   margin: 2rem;
+
+  display: flex;
+  align-items: center;
 }
 
 .navbar {
