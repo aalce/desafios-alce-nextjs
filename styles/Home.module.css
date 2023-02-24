@@ -77,3 +77,17 @@
 .search_wrapper input[type="text"]:focus {
   color: #000;
 }
+
+@media (max-width: 768px) {
+  .pokedex_wrapper {
+    width: 100%;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .interaction_bar {
+    flex-direction: column;
+  }
+}

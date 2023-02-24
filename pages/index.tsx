@@ -20,6 +20,9 @@ interface PokemonsProps {
 
 export default function Home({ pokemons }: PokemonsProps) {
 
+  console.log(pokemons);
+
+
   const [sorting, setSorting] = useState<'asc' | 'desc'>('asc');
   const [searchValue, setSearchValue] = useState('');
 

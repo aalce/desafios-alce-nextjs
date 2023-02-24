@@ -34,15 +34,16 @@ interface PokemonProps {
 export default function Pokemon({ pokemon }: PokemonProps) {
 
     return (
+        pokemon &&
         <div className={styles.pokemon_wrapper}>
             <Head>
-                <title>{pokemon.name}</title>
+                <title>{pokemon?.name}</title>
             </Head>
 
             <Link href='/' className={styles.arrow_left_icon}>
                 <Image
                     src={arrow}
-                    width={20}
+                    width={30}
                     alt='Voltar'
                     title='Voltar'
                 />

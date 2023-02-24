@@ -10,8 +10,8 @@
 
   padding: 2rem;
   border-radius: 20px;
-  height: max-content;
-  width: max-content;
+  height: 700px;
+  width: 500px;
   position: relative;
 }
 
@@ -73,5 +73,6 @@
 @media (max-width: 768px) {
   .pokemon_wrapper {
     max-width: 300px;
+    height: max-content;
   }
 }
