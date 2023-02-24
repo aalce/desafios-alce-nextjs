@@ -20,9 +20,6 @@ interface PokemonsProps {
 
 export default function Home({ pokemons }: PokemonsProps) {
 
-  console.log(pokemons);
-
-
   const [sorting, setSorting] = useState<'asc' | 'desc'>('asc');
   const [searchValue, setSearchValue] = useState('');
 
@@ -73,7 +70,7 @@ export default function Home({ pokemons }: PokemonsProps) {
             />
             <input
               type="text"
-              placeholder="Search by Pokemon name"
+              placeholder="Busque pelo nome do pokémon"
               value={searchValue}
               onChange={(event) => setSearchValue(event.target.value)}
             />
@@ -81,13 +78,15 @@ export default function Home({ pokemons }: PokemonsProps) {
         </div>
       </nav>
 
-      <section className={styles.pokedex_grid}>
-        {sortedPokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchValue.toLowerCase())).map((pokemon) => (
-          <div key={`pokemon-${pokemon.uuid}`}>
-            <Card pokemon={pokemon} />
-          </div>
-        ))}
-      </section>
+      {pokemons.length ?
+        <section className={styles.pokedex_grid}>
+          {sortedPokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchValue.toLowerCase())).map((pokemon) => (
+            <div key={`pokemon-${pokemon.uuid}`}>
+              <Card pokemon={pokemon} />
+            </div>
+          ))}
+        </section>
+        : <h2>Nenhum pokémon encontrado</h2>}
     </div>
   )
 }
