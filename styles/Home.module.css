@@ -1,25 +1,25 @@
-.grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
-    padding: 10px;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
 }
 
-.loading{
-    margin: 50px auto 20px;
-    width: 200px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    display: block;
-    cursor: pointer;
-    font-weight: bold;
-    border: 0;
-    transition: .2s;
+.loading {
+  margin: 50px auto 20px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  font-weight: bold;
+  border: 0;
+  transition: 0.2s;
 }
 
-.loading:hover{
-    transform: scale(1.1);
+.loading:hover {
+  transform: scale(1.1);
 }

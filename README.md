@@ -7,18 +7,21 @@ Olá caro desenvolvedor, nosso principal objetivo é testar suas habilidades em 
 Não deixe de enviar o seu teste mesmo que incompleto!
 
 # Tecnologias a serem utilizadas
-* Nextjs
-* HTML
-* CSS
-* Javascript
-* Typescript
-* Nodejs
-* React
+
+- Nextjs
+- HTML
+- CSS
+- Javascript
+- Typescript
+- Nodejs
+- React
 
 # Entrega:
+
 Para iniciar o teste, faça um fork deste repositório, crie uma branch com o seu nome completo e depois envie-nos o pull request. Se você apenas clonar o repositório não vai conseguir fazer push e depois vai ser mais complicado fazer o pull request.
 
 # O que vamos avaliar:
+
 - Legibilidade do código
 - Criação de componentes
 - Lógica
@@ -26,32 +29,35 @@ Para iniciar o teste, faça um fork deste repositório, crie uma branch com o se
 - Não esperamos um layout lindo, não é vaga para designer, mas alguma preocupação com o visual será considerada.
 
 # Instruções para o desafio:
+
 Você vai criar 2 páginas, a primeira (index/home) será um grid de objetos/imagens e a segunda detalhes sobre os objetos desse grid.
 
 ## Grid
+
 Para construir a primeira página você vai precisar usar uma API livre, aqui tem uma lista com algumas opções: [15 Fun and Interesting APIs to use for your next coding project in 2022](https://medium.com/codex/15-fun-and-interesting-apis-to-use-for-your-next-coding-project-in-2022-86a4ff3a2742)
 
-Você precisa escolher uma API que retorne uma lista com pelo menos uns 20 objetos e que esses objetos tenham imagens. *Não precisa ser uma dessa lista, se encontrar outra pode usar.*
+Você precisa escolher uma API que retorne uma lista com pelo menos uns 20 objetos e que esses objetos tenham imagens. _Não precisa ser uma dessa lista, se encontrar outra pode usar._
 
 ## Detalhes do item
+
 Quando clica em um item do grid, vai para a segunda página, onde é mostrado alguns detalhes desse objeto. Não precisa ser uma página gigante, no máximo uns 5 detalhes.
 
 ### Exemplo:
+
 Na primeira página uma lista de Pokemons, quando clica vai para os detalhes daquele Pokemon e mostra o nome, as habilidades, altura e peso. Tem uma [API](https://pokeapi.co/) para isso.
 
 ### Bônus:
-* Fazer algum tipo de ordenação ou filtro no grid;
-* Fazer os requests para a API no backend;
+
+- Fazer algum tipo de ordenação ou filtro no grid;
+- Fazer os requests para a API no backend;
 
 #### Boa sorte! 🚀
 
-
-
 # Observações
+
 Esse é um projeto [Next.js](https://nextjs.org/) criado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 As instruções abaixo são do Nextjs e podem ser úteis para começar.
-
 
 ## Getting Started
 
