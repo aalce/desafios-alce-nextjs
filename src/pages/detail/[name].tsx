@@ -3,6 +3,10 @@ import styles from "../../../styles/Detail.module.css";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
+import { faMeteor, faShield, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 type Pokemon = {
   id: number;
@@ -22,6 +26,7 @@ export default function Pokemon() {
   const { name } = router.query;
   const [detailPokemon, setDetailPokemon] = useState({
     name: "",
+    image: "",
     ability1: {
       name: "",
     },
@@ -48,10 +53,12 @@ export default function Pokemon() {
 
   return (
     <>
-      <main>
+      <main className={styles.main}>
         <div className={styles.card}>
-          <h1>{detailPokemon.name}</h1>
-          <div className={styles.image}></div>
+          <div className={styles.image}>
+            <Image src={detailPokemon.image} width={200} height={200} alt={detailPokemon.name}/>
+          </div>
+          <h1 className={styles.title}>{detailPokemon.name}</h1>
           <div className={styles.details}>
             <div className={styles.ability}>
               Habilidade Principal: {detailPokemon.ability1.name}
@@ -61,11 +68,15 @@ export default function Pokemon() {
             </div>
           </div>
           <div className={styles.status}>
-            <div className={styles.item}>Ataque ({detailPokemon?.attack})</div>
             <div className={styles.item}>
-              Defessa ({detailPokemon?.defense})
+              <FontAwesomeIcon icon={faMeteor} /> {detailPokemon?.attack}
+              </div>
+            <div className={styles.item}>
+              <FontAwesomeIcon icon={faShield} /> {detailPokemon?.defense}
             </div>
-            <div className={styles.item}>Vida ({detailPokemon?.hp})</div>
+            <div className={styles.item}>
+              <FontAwesomeIcon icon={faHeart} /> {detailPokemon?.hp}
+              </div>
           </div>
         </div>
       </main>
